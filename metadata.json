@@ -1,0 +1,6 @@
+{
+  "name": "Superbdeal Corp - Staff Operations Workstation",
+  "description": "Internal enterprise operations workstation for Superbdeal Corp: Sales counter inventory & Viber quote generator, Hunter 3D Hawkeye service bay dispatch, payment audit, and B2B fleet procurement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
