@@ -389,7 +389,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       <button
                         type="button"
                         disabled={!financeOk}
-                        title={!financeOk ? 'Manager or Admin only' : undefined}
+                        title={!financeOk ? 'Only Manager can final-approve payments' : undefined}
                         onClick={() => {
                           const raw = amountReceivedInput.trim();
                           const amt = raw === '' ? selectedOrder.amount : Number(raw);
@@ -403,12 +403,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                       {/* Button 2: Reject Payment Proof */}
                       <button
+                        type="button"
+                        disabled={!financeOk}
+                        title={!financeOk ? 'Only Manager can reject payments' : undefined}
                         onClick={() => setRejectModalOrderId(selectedOrder.id)}
-                        className="flex items-center justify-center space-x-2 py-3.5 px-4 rounded-xl bg-white hover:bg-rose-50 text-rose-700 border border-slate-200 hover:border-rose-300 font-semibold text-xs tracking-wide transition-all cursor-pointer "
+                        className="flex items-center justify-center space-x-2 py-3.5 px-4 rounded-xl bg-white hover:bg-rose-50 text-rose-700 border border-slate-200 hover:border-rose-300 font-semibold text-xs tracking-wide transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <XCircle className="w-4 h-4" />
                         <span>Reject Payment Proof</span>
                       </button>
+                      {!financeOk && (
+                        <p className="sm:col-span-2 text-[11px] text-slate-500">
+                          Counter can open this queue and note proof for the customer. Final approve/reject is Manager only.
+                        </p>
+                      )}
                     </div>
                     </div>
                   ) : selectedOrder.paymentStatus === 'Cleared' || selectedOrder.paymentStatus === 'Credit Approved (PDC)' ? (

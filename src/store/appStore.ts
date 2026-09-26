@@ -565,13 +565,6 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   updateBookingStatus: (bookingId, newStatus) => {
     const { bookings, releaseNotifications, isSoundMuted, products, activeRole } = get();
-    if (!canAccessBays(activeRole) && activeRole !== 'ROLE_INTERN') {
-      // Intern may only view; managers/clerks update bay board
-    }
-    if (activeRole === 'ROLE_INTERN') {
-      get().triggerToast('Counter staff cannot change bay status.');
-      return;
-    }
     if (!canAccessBays(activeRole)) {
       get().triggerToast('Your role cannot update service bays.');
       return;
@@ -1023,7 +1016,7 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   simulateNewAlert: () => {
     const { isSoundMuted, products, activeRole } = get();
-    if (!canManageWarehouseOps(activeRole) && activeRole !== 'ROLE_ADMIN') {
+    if (!canManageWarehouseOps(activeRole)) {
       get().triggerToast('Only warehouse roles can simulate alerts.');
       return;
     }
